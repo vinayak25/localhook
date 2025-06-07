@@ -1,0 +1,22 @@
+{
+  "name": "localhook-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "eventsource": "^4.0.0",
+    "figlet": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.7.0",
+    "@types/node": "^22.15.30",
+    "typescript": "^5.8.3"
+  }
+}
