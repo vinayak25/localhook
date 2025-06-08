@@ -28,3 +28,36 @@ To create a new webhook, run the following command
 localhook new
 ```
 
+It will output you a new webhook details.
+
+```
+[3:40:49 PM] ✔ New webhook created: https://lhook.xyz/BYGwTpBz1DAiGYg
+[3:40:49 PM] ℹ You can use the webhook by running the following command:
+
+ ╭───────────────────────────────────────────────────────────────────╮
+ │  lhook -u https://lhook.xyz/BYGwTpBz1DAiGYg -r <route> -p <port>  │
+ ╰───────────────────────────────────────────────────────────────────╯
+```
+
+Once this step is done, we are good to subscribe to the webhook now.
+
+### Subscribe to the Webhook
+
+We can subscribe to the webhook by simply running the `localhook` command.
+
+```bash
+localhook -u webhook_url -r local_route -p port_number
+```
+
+For example, to tunnel the request coming from the webhook to your local route, open a new terminal and run the following command.
+
+```bash
+localhook -u https://lhook.xyz/BYGwTpBz1DAiGYg -r /payments/hooks -p 5001
+```
+
+```bash
+ℹ Forwarding https://lhook.xyz/BYGwTpBz1DAiGYg to http://localhost:5001/payments/hooks
+✔ Connected to https://lhook.xyz/BYGwTpBz1DAiGYg  
+```
+
+Once you run this command, all requests that you will receive on `https://lhook.xyz/BYGwTpBz1DAiGYg` will be routed to your local route.
