@@ -4,7 +4,6 @@ export const forwardWebhook = async (
   forwardUrl: string,
   data: Record<string, any>
 ) => {
-  console.log("forwarding webhook", data);
   try {
     // Parse the webhook payload
     const payload = typeof data === "string" ? JSON.parse(data) : data;
@@ -49,20 +48,15 @@ export const forwardWebhook = async (
         typeof body === "string" ? body : JSON.stringify(body);
     }
 
-    console.log(`Forwarding ${httpMethod} request to: ${targetUrl.toString()}`);
-    console.log(`Headers:`, forwardHeaders);
-    console.log(`Body:`, body);
-
     // Make the forwarded request
-    consola.log("requestOptions", requestOptions);
-    consola.log("targetUrl", targetUrl.toString());
     const response = await fetch(targetUrl.toString(), requestOptions);
 
     if (response.ok) {
       consola.success(
-        `Successfully forwarded ${httpMethod} request to ${targetUrl.toString()}`
+        `Successfully forwarded ${httpMethod} request to ${targetUrl.toString()} with status ${
+          response.status
+        }`
       );
-      consola.info(`Response status: ${response.status}`);
     } else {
       consola.error(
         `Failed to forward request: ${response.status} ${response.statusText}`

@@ -18,7 +18,7 @@ export const subscribToWebhook = async (
       route.startsWith("/") ? route : "/" + route
     }`;
 
-    console.log(`Forwarding ${url} to ${forwardUrl}`);
+    consola.info(`Forwarding ${url} to ${forwardUrl}`);
 
     // Create EventSource connection
     const es = new EventSource(subscribeUrl.toString());
@@ -28,22 +28,21 @@ export const subscribToWebhook = async (
     };
 
     es.addEventListener("webhook-response-received", async (event) => {
-      await forwardWebhook(forwardUrl, event.data);
+      try {
+        await forwardWebhook(forwardUrl, event.data);
+      } catch (error) {}
     });
 
     es.addEventListener("connected", (event) => {
       consola.success(`Connected to ${url}`);
-      consola.box(`subscribe url: ${subscribeUrl.toString()}`);
+      console.log();
     });
 
     es.addEventListener("error", (event) => {
-      console.log("error", event);
       reject(event.message);
     });
 
-    es.addEventListener("heartbeat", (event) => {
-      console.log("heartbeat", event);
-    });
+    es.addEventListener("heartbeat", (event) => {});
 
     // Handle incoming messages
     // eventSource.onmessage = async (event) => {

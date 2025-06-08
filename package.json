@@ -1,6 +1,6 @@
 {
   "name": "localhook",
-  "version": "0.0.1-next2",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "files": [
     "dist"

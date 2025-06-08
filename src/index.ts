@@ -9,7 +9,7 @@ import { consola } from "consola";
 program
   .name("lhook")
   .description("CLI to create and manage local webhooks")
-  .version("0.0.1");
+  .version("0.0.2");
 
 program
   .command("new")
@@ -20,6 +20,7 @@ program
     const webhook = await newWebhook(url);
 
     consola.success(`New webhook created: ${webhook.url}`);
+    consola.info("You can use the webhook by running the following command:");
     consola.box(`lhook -u ${webhook.url} -r <route> -p <port>`);
   });
 
