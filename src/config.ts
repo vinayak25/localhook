@@ -1,1 +1,1 @@
-export const LHOOK_ENDPOINT = "https://localhook-api.tryintent.com";
+export const LHOOK_ENDPOINT = "https://lhook.xyz";
