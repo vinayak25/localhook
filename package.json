@@ -1,7 +1,23 @@
 {
   "name": "localhook",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/index.js",
+  "keywords": [
+    "webhook",
+    "localhook",
+    "local-webhook",
+    "local-webhooks",
+    "local-webhook-cli",
+    "local-webhook-cli-tool"
+  ],
+  "homepage": "https://github.com/vinayak25/localhook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayak25/localhook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vinayak25/localhook/issues"
+  },
   "files": [
     "dist"
   ],
