@@ -1,6 +1,6 @@
 # LocalHook CLI
 
-CLI tool for managing local webhooks
+CLI tool for managing local webhooks.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ You can use localhook CLI to create new webhooks or tunneling the webhook to you
 
 ### Creating Webhooks
 
-To create a new webhook, run the following command
+To create a new webhook, run the following command. The command gives you a unique webhook URL which you can add in your application.
 
 ```bash
 localhook new
@@ -31,12 +31,11 @@ localhook new
 It will output you a new webhook details.
 
 ```
-[3:40:49 PM] ✔ New webhook created: https://lhook.xyz/BYGwTpBz1DAiGYg
-[3:40:49 PM] ℹ You can use the webhook by running the following command:
+ℹ Please configure the following webhook in your application.             
+✔ New webhook created: https://lhook.xyz/vBAOv0WFZ5YPlY4                 
 
- ╭───────────────────────────────────────────────────────────────────╮
- │  lhook -u https://lhook.xyz/BYGwTpBz1DAiGYg -r <route> -p <port>  │
- ╰───────────────────────────────────────────────────────────────────╯
+ℹ You can use the webhook by running the following command:               
+✔ localhook -u https://lhook.xyz/vBAOv0WFZ5YPlY4 -r <route> -p <port>    
 ```
 
 Once this step is done, we are good to subscribe to the webhook now.
@@ -61,3 +60,7 @@ localhook -u https://lhook.xyz/BYGwTpBz1DAiGYg -r /payments/hooks -p 5001
 ```
 
 Once you run this command, all requests that you will receive on `https://lhook.xyz/BYGwTpBz1DAiGYg` will be routed to your local route.
+
+## Reporting Issue
+
+If you are facing any issues with it, you can report the bugs [here](https://github.com/vinayak25/localhook/issues).
