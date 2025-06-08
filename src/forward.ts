@@ -1,7 +1,10 @@
+import consola from "consola";
+
 export const forwardWebhook = async (
   forwardUrl: string,
   data: Record<string, any>
 ) => {
+  console.log("forwarding webhook", data);
   try {
     // Parse the webhook payload
     const payload = typeof data === "string" ? JSON.parse(data) : data;
@@ -17,12 +20,18 @@ export const forwardWebhook = async (
       });
     }
 
-    // Prepare headers, filtering out host and connection headers
+    // Prepare headers, filtering out headers that should be set automatically by fetch
     const forwardHeaders: Record<string, string> = {};
     if (headers) {
       Object.entries(headers).forEach(([key, value]) => {
-        // Skip host and connection headers as they'll be set by fetch
-        if (!["host", "connection"].includes(key.toLowerCase())) {
+        // Skip headers that will be set automatically by fetch
+        const skipHeaders = [
+          "host",
+          "connection",
+          "content-length",
+          "transfer-encoding",
+        ];
+        if (!skipHeaders.includes(key.toLowerCase())) {
           forwardHeaders[key] = value as string;
         }
       });
@@ -45,16 +54,18 @@ export const forwardWebhook = async (
     console.log(`Body:`, body);
 
     // Make the forwarded request
+    consola.log("requestOptions", requestOptions);
+    consola.log("targetUrl", targetUrl.toString());
     const response = await fetch(targetUrl.toString(), requestOptions);
 
     if (response.ok) {
-      console.log(
-        `✅ Successfully forwarded ${httpMethod} request to ${targetUrl.toString()}`
+      consola.success(
+        `Successfully forwarded ${httpMethod} request to ${targetUrl.toString()}`
       );
-      console.log(`Response status: ${response.status}`);
+      consola.info(`Response status: ${response.status}`);
     } else {
-      console.error(
-        `❌ Failed to forward request: ${response.status} ${response.statusText}`
+      consola.error(
+        `Failed to forward request: ${response.status} ${response.statusText}`
       );
     }
 

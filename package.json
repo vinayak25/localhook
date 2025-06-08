@@ -6,6 +6,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "tsc --watch",
     "prebuild": "rimraf dist",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish",
