@@ -64,3 +64,7 @@ Once you run this command, all requests that you will receive on `https://lhook.
 ## Reporting Issue
 
 If you are facing any issues with it, you can report the bugs [here](https://github.com/vinayak25/localhook/issues).
+
+## Security
+
+- Localhook doesn't save any kind of webhook responses.
