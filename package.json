@@ -15,8 +15,8 @@
   "description": "",
   "dependencies": {
     "commander": "^14.0.0",
-    "eventsource": "^4.0.0",
-    "figlet": "^1.8.1"
+    "consola": "^3.4.2",
+    "eventsource": "^4.0.0"
   },
   "devDependencies": {
     "@types/figlet": "^1.7.0",

@@ -1,11 +1,11 @@
-import figlet from "figlet";
 import { program } from "commander";
 import { subscribToWebhook } from "./subscribe";
 import { LHOOK_ENDPOINT } from "./config";
 import { newWebhook } from "./new";
+import { consola } from "consola";
 
 program
-  .name("localhook")
+  .name("lhook")
   .description("CLI to create and manage local webhooks")
   .version("0.0.1");
 
@@ -16,7 +16,9 @@ program
   .action(async (str, options) => {
     const { url = LHOOK_ENDPOINT } = options.opts();
     const webhook = await newWebhook(url);
-    console.log(`\x1b[33mNew webhook created: ${webhook.url}\x1b[0m`);
+
+    consola.success(`New webhook created: ${webhook.url}`);
+    consola.box(`lhook -u ${webhook.url} -r <route> -p <port>`);
   });
 
 program
@@ -47,7 +49,5 @@ program
       process.exit(1);
     }
   });
-
-console.log(figlet.textSync("Localhook"));
 
 program.parse(process.argv);
