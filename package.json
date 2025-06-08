@@ -1,8 +1,12 @@
 {
   "name": "localhook",
-  "version": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.1-next2",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "prebuild": "rimraf dist",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish",
     "build": "npx tsc"
@@ -21,6 +25,7 @@
   "devDependencies": {
     "@types/figlet": "^1.7.0",
     "@types/node": "^22.15.30",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3"
   }
 }

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from "commander";
 import { subscribToWebhook } from "./subscribe";
 import { LHOOK_ENDPOINT } from "./config";
@@ -29,23 +31,28 @@ program
   .option("-p, --port <port>", "The port of the webhook")
   .action(async (str, options) => {
     const { url, route, port } = options.opts();
+    if (!url && !route && !port) {
+      consola.error("URL, route, and port are required");
+      process.exit(1);
+    }
+
     if (!url) {
-      console.error("URL is required");
+      consola.error("URL is required");
       process.exit(1);
     }
     if (!route) {
-      console.error("Route is required");
+      consola.error("Route is required");
       process.exit(1);
     }
     if (!port) {
-      console.error("Port is required");
+      consola.error("Port is required");
       process.exit(1);
     }
 
     try {
       await subscribToWebhook(url, route, port);
     } catch (error) {
-      console.error("Error subscribing to webhook:", error);
+      consola.error("Error subscribing to webhook:", error);
       process.exit(1);
     }
   });
